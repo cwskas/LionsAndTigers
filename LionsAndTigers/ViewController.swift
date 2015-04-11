@@ -16,6 +16,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var breedLabel: UILabel!
     
     var myTigers:[Tiger] = []  // the   = []   insures that the array exist even though it is empty
+    var currentIndex = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,8 +29,6 @@ class ViewController: UIViewController {
         myTiger.image = UIImage(named: "BengalTiger.jpg")
         
         myTigers.append(myTiger)
-        
-        println("My Tiger's name is \(myTiger.name), its age is \(myTiger.age), its breed is \(myTiger.breed), and its image is \(myTiger.image)")
         
         myImageView.image = myTiger.image
         nameLabel.text = myTiger.name
@@ -59,16 +58,28 @@ class ViewController: UIViewController {
     }
 
     @IBAction func nextBarButtonPressed(sender: UIBarButtonItem) {
-//        println("")
-//        println(myTigers)
         
-        let randomIndex = Int(arc4random_uniform(UInt32(myTigers.count)))
+        var randomIndex:Int
+        do {
+            randomIndex = Int(arc4random_uniform(UInt32(myTigers.count)))
+        } while currentIndex == randomIndex
+        
+        currentIndex = randomIndex
         let tiger = myTigers[randomIndex]
         
-        nameLabel.text = tiger.name
-        ageLabel.text = "\(tiger.age)"
-        breedLabel.text = tiger.breed
-        myImageView.image = tiger.image
+//        nameLabel.text = tiger.name
+//        ageLabel.text = "\(tiger.age)"
+//        breedLabel.text = tiger.breed
+//        myImageView.image = tiger.image
+        
+        UIView.transitionWithView(self.view, duration: 2, options: UIViewAnimationOptions.TransitionCrossDissolve, animations:{
+            self.nameLabel.text = tiger.name
+            self.ageLabel.text = "\(tiger.age)"
+            self.breedLabel.text = tiger.breed
+            self.myImageView.image = tiger.image
+            }, completion: { (finished: Bool) -> () in
+        })
+
     }
 }
 
