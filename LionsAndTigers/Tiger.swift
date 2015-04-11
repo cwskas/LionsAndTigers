@@ -9,11 +9,11 @@
 import Foundation
 import UIKit
 
-// the 'blueprint for our tiger
+// the 'blueprint' for our tigers
 struct Tiger {
 //    <#properties and methods#>
-    var age = 0
     var name = ""
+    var age = 0
     var breed = ""
     var image = UIImage(named:"")
 }
