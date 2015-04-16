@@ -43,7 +43,7 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="38" y="499" width="297" height="21"/>
+                                    <rect key="frame" x="38" y="466" width="297" height="21"/>
                                 </variation>
                             </label>
                             <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="breed" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pD6-Uk-DKY">
@@ -53,7 +53,7 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="38" y="557" width="297" height="21"/>
+                                    <rect key="frame" x="38" y="524" width="297" height="21"/>
                                 </variation>
                             </label>
                             <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="age" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yTU-F7-GaJ">
@@ -63,7 +63,17 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="38" y="528" width="297" height="21"/>
+                                    <rect key="frame" x="38" y="495" width="297" height="21"/>
+                                </variation>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1SX-y1-MCR">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="38" y="547" width="297" height="50"/>
                                 </variation>
                             </label>
                         </subviews>
@@ -75,6 +85,7 @@
                                 <exclude reference="PUH-3c-JM4"/>
                                 <exclude reference="pD6-Uk-DKY"/>
                                 <exclude reference="yTU-F7-GaJ"/>
+                                <exclude reference="1SX-y1-MCR"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -84,6 +95,7 @@
                                 <include reference="PUH-3c-JM4"/>
                                 <include reference="pD6-Uk-DKY"/>
                                 <include reference="yTU-F7-GaJ"/>
+                                <include reference="1SX-y1-MCR"/>
                             </mask>
                         </variation>
                     </view>
@@ -93,6 +105,7 @@
                         <outlet property="breedLabel" destination="pD6-Uk-DKY" id="dvw-at-lKX"/>
                         <outlet property="myImageView" destination="GPC-yU-CNu" id="fbQ-ns-8aO"/>
                         <outlet property="nameLabel" destination="PUH-3c-JM4" id="k7s-3m-6Ax"/>
+                        <outlet property="randomFactLabel" destination="1SX-y1-MCR" id="cSt-Oa-0jR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

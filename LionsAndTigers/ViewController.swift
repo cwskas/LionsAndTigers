@@ -14,6 +14,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var ageLabel: UILabel!
     @IBOutlet weak var breedLabel: UILabel!
+    @IBOutlet weak var randomFactLabel: UILabel!
     
     var myTigers:[Tiger] = []  // the   = []   insures that the array exist even though it is empty
     var currentIndex = 0
@@ -27,14 +28,15 @@ class ViewController: UIViewController {
         myTiger.breed = "Bengal"
         myTiger.age = 3
         myTiger.image = UIImage(named: "BengalTiger.jpg")
-        myTiger.chuff()
+        myTiger.chuffANumberOfTimes(1, isLoud: false)
         
         myTigers.append(myTiger)
         
         myImageView.image = myTiger.image
         nameLabel.text = myTiger.name
-        ageLabel.text = "Age \(myTiger.age)"
+        ageLabel.text = "Age \(myTiger.ageInTigerYearsFromAge(myTiger.age))"
         breedLabel.text = myTiger.breed
+        self.randomFactLabel.text = myTiger.randomFact()
         
         var secondTiger = Tiger()
         secondTiger.name = "Tigress"
@@ -66,15 +68,25 @@ class ViewController: UIViewController {
             randomIndex = Int(arc4random_uniform(UInt32(myTigers.count)))
         } while currentIndex == randomIndex
         
+ // I added this experimenting with getting a specific tiger to be either loud or not
         currentIndex = randomIndex
         let tiger = myTigers[randomIndex]
-        tiger.chuff()
+        switch currentIndex {
+        case 1, 3:
+            tiger.chuffANumberOfTimes(1, isLoud: false)
+        default:
+            tiger.chuffANumberOfTimes(1, isLoud: true)
+        }
+        
+        var tigerYears: Int
+        tigerYears = tiger.ageInTigerYearsFromAge(tiger.age)
         
         UIView.transitionWithView(self.view, duration: 2, options: UIViewAnimationOptions.TransitionCrossDissolve, animations:{
             self.nameLabel.text = tiger.name
-            self.ageLabel.text = "\(tiger.age)"
+            self.ageLabel.text = "Age \(tigerYears)"
             self.breedLabel.text = tiger.breed
             self.myImageView.image = tiger.image
+            self.randomFactLabel.text = tiger.randomFact()
             }, completion: { (finished: Bool) -> () in
         })
 
