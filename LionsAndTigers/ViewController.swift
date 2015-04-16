@@ -27,6 +27,7 @@ class ViewController: UIViewController {
         myTiger.breed = "Bengal"
         myTiger.age = 3
         myTiger.image = UIImage(named: "BengalTiger.jpg")
+        myTiger.chuff()
         
         myTigers.append(myTiger)
         
@@ -50,6 +51,7 @@ class ViewController: UIViewController {
         var fourthTiger = Tiger(name: "Spar", age: 4, breed: "Siberian Tiger", image: UIImage(named: "SiberianTiger.jpg"))
         
         myTigers += [secondTiger, thirdTiger, fourthTiger]
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -66,11 +68,7 @@ class ViewController: UIViewController {
         
         currentIndex = randomIndex
         let tiger = myTigers[randomIndex]
-        
-//        nameLabel.text = tiger.name
-//        ageLabel.text = "\(tiger.age)"
-//        breedLabel.text = tiger.breed
-//        myImageView.image = tiger.image
+        tiger.chuff()
         
         UIView.transitionWithView(self.view, duration: 2, options: UIViewAnimationOptions.TransitionCrossDissolve, animations:{
             self.nameLabel.text = tiger.name
