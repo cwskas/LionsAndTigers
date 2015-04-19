@@ -17,7 +17,10 @@ class ViewController: UIViewController {
     @IBOutlet weak var randomFactLabel: UILabel!
     
     var myTigers:[Tiger] = []  // the   = []   insures that the array exist even though it is empty
+    var lions:[Lion] = []
+    
     var currentIndex = 0
+    var currentAnimal = (species: "Tiger", index: 0)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,6 +57,27 @@ class ViewController: UIViewController {
         
         myTigers += [secondTiger, thirdTiger, fourthTiger]
         
+        var lion = Lion()
+        lion.age = 4
+        lion.isAlphaMale = false
+        lion.image = UIImage(named: "Lion.jpg")
+        lion.name = "Mufasa"
+        lion.subspecies = "West African"
+        
+        var lioness = Lion()
+        lioness.age = 3
+        lioness.isAlphaMale = false
+        lioness.image = UIImage(named: "Lioness.jpeg")
+        lioness.name = "Sarabi"
+        lioness.subspecies  = "Barbary"
+        
+        lion.roar()
+        lioness.roar()
+        
+        lion.changeToAlphaMale()
+        println(lion.isAlphaMale)
+        
+        self.lions += [lion, lioness]
     }
 
     override func didReceiveMemoryWarning() {
@@ -63,33 +87,74 @@ class ViewController: UIViewController {
 
     @IBAction func nextBarButtonPressed(sender: UIBarButtonItem) {
         
-        var randomIndex:Int
-        do {
-            randomIndex = Int(arc4random_uniform(UInt32(myTigers.count)))
-        } while currentIndex == randomIndex
+        updateAnimal()
+        updateView()
         
- // I added this experimenting with getting a specific tiger to be either loud or not
-        currentIndex = randomIndex
-        let tiger = myTigers[randomIndex]
-        switch currentIndex {
-        case 1, 3:
-            tiger.chuffANumberOfTimes(1, isLoud: false)
-        default:
-            tiger.chuffANumberOfTimes(1, isLoud: true)
+//        var randomIndex:Int
+//        do {
+//            randomIndex = Int(arc4random_uniform(UInt32(myTigers.count)))
+//        } while currentIndex == randomIndex
+//        
+// // I added this experimenting with getting a specific tiger to be either loud or not
+//        currentIndex = randomIndex
+//        let tiger = myTigers[randomIndex]
+//        switch currentIndex {
+//        case 1, 3:
+//            tiger.chuffANumberOfTimes(1, isLoud: false)
+//        default:
+//            tiger.chuffANumberOfTimes(1, isLoud: true)
+//        }
+//        
+//        var tigerYears: Int
+//        tigerYears = tiger.ageInTigerYearsFromAge(tiger.age)
+        
+//        UIView.transitionWithView(self.view, duration: 2, options: UIViewAnimationOptions.TransitionCrossDissolve, animations:{
+//            self.nameLabel.text = tiger.name
+//            self.ageLabel.text = "Age \(tigerYears)"
+//            self.breedLabel.text = tiger.breed
+//            self.myImageView.image = tiger.image
+//            self.randomFactLabel.text = tiger.randomFact()
+//            }, completion: { (finished: Bool) -> () in
+//        })
+    }
+    
+        func updateAnimal () {
+            switch currentAnimal {
+            case ("Tiger", _):
+                    let randomIndex = Int(arc4random_uniform(UInt32(lions.count)))
+                    currentAnimal = ("Lion", randomIndex)
+            default:
+                let randomIndex = Int(arc4random_uniform(UInt32(myTigers.count)))
+                currentAnimal = ("Tiger", randomIndex)
+            }
         }
         
-        var tigerYears: Int
-        tigerYears = tiger.ageInTigerYearsFromAge(tiger.age)
-        
-        UIView.transitionWithView(self.view, duration: 2, options: UIViewAnimationOptions.TransitionCrossDissolve, animations:{
-            self.nameLabel.text = tiger.name
-            self.ageLabel.text = "Age \(tigerYears)"
-            self.breedLabel.text = tiger.breed
-            self.myImageView.image = tiger.image
-            self.randomFactLabel.text = tiger.randomFact()
-            }, completion: { (finished: Bool) -> () in
-        })
+        func updateView () {
+            
+            UIView.transitionWithView(self.view, duration: 2, options: UIViewAnimationOptions.TransitionCrossDissolve, animations:{
 
-    }
+                if self.currentAnimal.species == "Tiger" {
+                    let tiger = self.myTigers[self.currentAnimal.index]
+                    self.myImageView.image = tiger.image
+                    self.breedLabel.text = tiger.breed
+                    self.ageLabel.text = "Age: \(tiger.age)"
+                    self.nameLabel.text = tiger.name
+                    self.randomFactLabel.text = tiger.randomFact()
+                }
+                else if self.currentAnimal.species == "Lion" {
+                    let lion = self.lions[self.currentAnimal.index]
+                    self.myImageView.image = lion.image
+                    self.breedLabel.text = lion.subspecies
+                    self.ageLabel.text = "Age: \(lion.age)"
+                    self.nameLabel.text = lion.name
+                    self.randomFactLabel.text = lion.randomFact()
+                    
+                }
+                self.randomFactLabel.hidden = false
+                
+                }, completion: { (finished: Bool) -> () in
+            })
+
+        }
 }
 
